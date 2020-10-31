@@ -13,13 +13,17 @@ const compress = require('compression');
 const methodOverride = require('method-override');
 const path = require('path')
 
-mongoose.connect(process.env.MONGODBURI);
+mongoose.connect(process.env.MONGODBURI)
+.then(res => {
+  console.log('conected')
+}).catch(err => {throw err});;
 const User = require("./models/user")
 const db = mongoose.connection;
 db.on("connected", () => {
   console.log("connected!")
 })
 db.on('error', () => {
+  console.log('error!')
   throw new Error('unable to connect to database at ' + process.env.MONGODBURI);
 });
 
