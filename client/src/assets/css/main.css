@@ -1,0 +1,78 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial;
+}
+
+.body {
+  scroll-behavior: smooth;
+}
+
+.tag-badge {
+  margin-left: 10px;
+}
+
+.resume {
+  font-weight: 200;
+  font-size: 30px;
+  font-family: serif;
+  text-align: left;
+}
+
+.tag-block {
+  font-size: 30px;
+  text-align: left;
+}
+
+.read-btn {
+  border-radius: 10px;
+  font-size: 30px;
+}
+
+.post-info {
+  font-family: Arial;
+  font-size: 30px;
+}
+
+.form-entry textarea {
+  height: 300px;
+  width: 100%;
+  font-family: monospace;
+  border-radius: 0;
+  border: 3px solid black;
+}
+
+.form-entry input {
+  width: 100%;
+  border: none;
+  border-bottom: 3px solid black;
+  font-family: monospace;
+}
+
+.form-entry {
+  margin-bottom: 30px;
+}
+
+.form-entry select {
+  font-family: Arial;
+}
+
+.form-entry h1 {
+  text-align: left;
+}
+
+.link-btn {
+  color: white
+}
+
+.jumbotron {
+  border-radius: 0 !important;
+}
+
+.create-user-btn:disabled {
+  cursor: no-drop;
+  background-color: #f8d7da !important;
+  border: none !important;
+}
+
+.nav-button-primary {
+  margin-left: 10px;
+}

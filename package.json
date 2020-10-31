@@ -1,0 +1,21 @@
+{
+  "name": "blog-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "concurrently \" mongod \" \" cd client && npm start \" \" cd server && npm start \"",
+    "start": "cd server && npm start",
+    "db": "mongod"
+  },
+  "author": "Edouard Des Parois Perrault",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  },
+  "dependencies": {
+    "move-cli": "^1.2.1",
+    "mv": "^2.1.1"
+  }
+}

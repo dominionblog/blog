@@ -1,0 +1,23 @@
+.conn-lost-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: #0085a1;
+}
+
+.conn-lost-overlay h1, .conn-lost-overlay i, .conn-lost-overlay p {
+  color: white;
+}
+
+.conn-lost-overlay p {
+  margin-top: 20px;
+  /* width: 30vw; */
+}
+
+.conn-lost-overlay h1 {
+  margin-bottom: 20px;
+}
+

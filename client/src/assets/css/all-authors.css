@@ -1,0 +1,16 @@
+.author-card {
+  flex: 0 1 40%;
+  margin: 20px;
+  width: 100%;
+}
+
+.authors-container {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+}
+
+.author-card h4 {
+  text-align: center;
+}
+

@@ -1,0 +1,39 @@
+.profile-nav {
+  overflow: hidden;
+}
+
+.profile-entry {
+  display: flex;
+  flex-wrap: wrap;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-entry h1 {
+  display: initial;
+}
+
+.profile-entry input {
+  flex-grow: 4;
+  margin: 10px 10px;
+  border: 1px solid black;
+  font-family: monospace;
+  padding: 10px;
+}
+
+.help-badge {
+  margin-left: 10px;
+}
+
+.setting-change-btn {
+  display: flex;
+}
+
+.setting-change-btn:first-child {
+  margin: 30px;
+}
+
+.profile-status-alert {
+  margin-top: 10px;
+}

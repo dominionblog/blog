@@ -1,0 +1,25 @@
+.contact-card {
+  margin-top: 30px;
+}
+
+.contact-card p {
+  margin: 0;
+}
+
+.contact-card .card-header {
+  background-color: rgb(63,108,118);
+}
+
+.contact-card h5 {
+  color: white;
+  text-align: center;
+}
+
+.contact-card a {
+  text-align: center;
+}
+
+.author-bio p {
+  text-align: left;
+}
+
