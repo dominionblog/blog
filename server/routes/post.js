@@ -77,9 +77,16 @@ router.put("/edit", async (req, res) => {
 })
 
 router.get("/view", async (req, res) => {
-    let posts = await Post.find({archived: false}).select("title tags resume author createdAt updatedAt").lean();
-    res.send(posts);
-    res.end();
+    try {
+        let posts = await Post.find({archived: false}).select("title tags resume author createdAt updatedAt").lean();
+        res.send(posts);
+        res.end();
+    } catch(err) {
+        res.status(500);
+        res.end();
+        throw err;
+    }
+    
 });
 
 async function setArchived(status, req, res) {
