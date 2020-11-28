@@ -1,5 +1,10 @@
 
-require("dotenv").config();
+if (process.env.NODE_ENV != 'production') {
+  /**
+   * Only configure dotenv if it is a developement build. 
+   */
+  require("dotenv").config();
+}
 const express = require('express');
 const glob = require('glob');
 const mongoose = require('mongoose');
