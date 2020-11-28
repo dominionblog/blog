@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-dev": "concurrently \" mongod \" \" cd client && npm start \" \" cd server && npm start \"",
-    "build": "cd client && npm run build && cd .. && node move-build.js",
+    "build-dev": "cd client && npm run build && cd .. && node move-build.js",
     "start": "cd server && npm start",
     "db": "mongod"
   },
