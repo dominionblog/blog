@@ -1,0 +1,62 @@
+header.masthead {
+  background: no-repeat 50%;
+  background-color: #6c757d;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover;
+  margin: 0;
+}
+
+.welcome-page {
+  height: 100vh;
+}
+
+.logo-image {
+  width: 200px;
+}
+
+.home-button {
+  margin: 10px;
+}
+
+div.masthead {
+  background: no-repeat 50%;
+  background-color: #6c757d;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover;
+  margin: 0;
+}
+
+div.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #212529;
+  opacity: .5;
+}
+
+div.masthead .site-heading h1 {
+  font-size: 100px;
+  margin-top: 0;
+}
+
+.home-buttons {
+  margin-top: 15px;
+}
+
+/* div.masthead .site-heading h1,
+div.masthead .site-heading span {
+  color: white;
+} */
+
+div.masthead .site-heading {
+  text-align: center;
+  padding: 200px 0 150px;
+}
+
+.welcome-message {
+  color: white;
+} 

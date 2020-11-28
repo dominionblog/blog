@@ -2,3 +2,28 @@
   font-family: Arial;
 }
 
+pre {
+  text-align: left;
+}
+
+.post-meta h1 {
+  font-size: 25px;
+}
+
+.post-meta h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.post-meta p {
+  margin: 0;
+}
+
+.post-meta {
+  margin-bottom: 10px;
+}
+
+.post-meta a {
+  margin: 0;
+  padding: 0;
+}

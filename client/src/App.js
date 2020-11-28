@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Home from "./components/home"
 import Navbar from './components/general/navbar'
 import Footer from './components/general/footer'
@@ -14,10 +13,6 @@ import NewPost from './components/NewPost'
 import PostCreated from "./components/PostCreated"
 import LoadingOverlay from "./components/general/LoadingOverlay"
 import ProtectedRoute from './components/general/ProtectedRoute'
-import "./assets/css/conn-lost.css"
-import "./assets/css/all-authors.css"
-import "./assets/css/view-author.css"
-import "./assets/css/profile.css"
 import LostConn from "./components/general/LostConn"
 import FatalError from "./components/general/FatalError"
 import EditPost from './components/EditPost'
@@ -27,10 +22,31 @@ import EditUser from "./components/EditUser"
 import AllAuthors from "./components/AllAuthors"
 import UserPage from "./components/UserPage"
 import ProfilePage from "./components/Profile"
+import Posts from './components/Posts'
+import Browse from './components/Browse'
+import Tag from './components/Tag'
+import PostInspector from './components/PostInspector'
+
+/* Stylesheets */
+
+import './assets/css/cp.css'
+import './assets/bootstrap/css/bootstrap.min.css'
+import './assets/css/main.css'
+import './assets/css/new-post.css'
+import './assets/css/post.css'
+import './assets/css/user-accounts.css'
+import './assets/fonts/font-awesome.min.css'
+import './assets/css/home.css'
+import './assets/css/browse.css'
+import "./assets/css/conn-lost.css"
+import "./assets/css/all-authors.css"
+import "./assets/css/view-author.css"
+import "./assets/css/profile.css"
+import './assets/css/prism.css'
 
 import {
   Switch,
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
@@ -42,6 +58,17 @@ function App() {
   /* TODO: Make admin vs non-admin */
   let [isAdmin, setAdmin] = React.useState(false);
   let [isLoadingOverlay, setLoadingOverlay] = React.useState(false)
+  let [inspector, setInspector] = React.useState(null);
+  let [showInspector, setShowInspector] = React.useState(false)
+  let openInspector = post => {
+    setInspector(post)
+    if (post) {
+      setShowInspector(true)
+    } else {
+      setShowInspector(false)
+    }
+  }
+
   return (
     <div className="App">
       {isConnected ? null : <LostConn />}
@@ -49,9 +76,13 @@ function App() {
       <Router>
         {isCrashed ? <FatalError setCrashed={setCrashed} /> : null}
         <Navbar isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}></Navbar>
+        <PostInspector showInspector={showInspector} openInspector={openInspector} post={inspector} />
           <Switch>
             <Route exact={true} path="/">
               <Home setIsConnected={setIsConnected}></Home>
+            </Route>
+            <Route exact={true} path="/browse">
+              <Browse inspector={inspector} openInspector={openInspector}></Browse>
             </Route>
             <Route path="/login">
               <Login isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}></Login>
@@ -92,6 +123,10 @@ function App() {
             }} />
             <Route path="/users/:id">
               <UserPage />
+            </Route>
+            {/* Tags */}
+            <Route path="/tags/:id">
+              <Tag openInspector={openInspector} />
             </Route>
             <Route>
               <NotFound></NotFound>

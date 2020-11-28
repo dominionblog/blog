@@ -16,6 +16,7 @@ function Cp(props) {
                 </div>
                 <div className="col">
                     <Link to="/users/all"><button className="btn btn-primary cp-btn" type="button">Manage User Accounts</button></Link>
+                    {/* <Link to="/tags/all"><button className="btn btn-primary cp-btn" type="button">Manage Tags</button></Link> */}
                 </div>
             </div>
         </div>

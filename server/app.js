@@ -94,6 +94,7 @@ app.get("/", (req, res) => {
 app.use("/auth", require("./routes/auth"));
 app.use("/posts", require("./routes/post"));
 app.use("/users", require("./routes/user"))
+app.use("/tags", require("./routes/tag"))
 
 app.use((req, res, next) => {
   var err = new Error('Not Found');

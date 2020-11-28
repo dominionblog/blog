@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import AuthorCard from './general/AuthorCard'
 import axios from 'axios'
 import {Spinner} from 'react-bootstrap'
+import GeneralJumbo from './GeneralJumbo'
 
 let AllAuthors = () => {
     let [authors, setAuthors] = useState([]);
@@ -19,11 +20,7 @@ let AllAuthors = () => {
         })
     },[])
         return (<>
-        <header>
-            <div className="jumbotron" style={{backgroundColor: 'rgb(63,108,118)'}}>
-                <h1 className="text-center" style={{color: '#FFFFFF'}}>Our Authors</h1>
-            </div>
-        </header>
+        <GeneralJumbo title="Our Authors" />
         <div className="container authors-container" style={{height: 'auto'}}>
             {isLoading ? <div className="d-flex justify-content-center w-100"><Spinner animation="border"></Spinner></div> : authors.map(author => {
                 return (<AuthorCard key={author._id} {...author}/>)

@@ -1,0 +1,9 @@
+import { render } from '@testing-library/react'
+import Home from "../components/home"
+import React from 'react'
+
+test("Loads the home page", () => {
+    render(<Home />);
+    expect(screen.getByRole(''))
+})
+

@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 agent = chai.request.agent(app).keepOpen();
 
 const Post = require("../models/post")
+const Tags = require("../models/tag")
 
 describe("Handling post logic", function() {
     before("Empty the posts database", function(done) {
@@ -40,7 +41,7 @@ describe("Handling post logic", function() {
         .send({
             'title': 'new post',
             'md': '# First post \n Welcome to my first post on this blog!',
-            'resume': 'A summary of the first blog post',
+            'resume': 'A summary of the first blog post 00001',
             tags: ['intro','welcome','new','test']
         }).end((err, res) => {
             if (err) throw err;
@@ -101,9 +102,43 @@ describe("Handling post logic", function() {
                 done();
             })
         })
+    });
+    it("Should get a post with query", done => {
+        Post.findOne().populate('author').then(foundPost => {
+            agent.get("/posts/query")
+            .query({
+                title: foundPost.title,
+                author: foundPost.author.name
+            })
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(Object.keys(res.body[0]).includes('title')).to.be.true
+                done();
+            })
+        })
+    });
+    it("Should get a post with a tag", done => {
+        Post.findOne().then(foundPost => {
+            agent.get("/posts/query")
+            .query({
+                tags: {
+                    $in: String(foundPost.tags[0]) // Cast the ObjectID to a String (will cause error otherwise)
+                }
+            })
+            .end((err, res) => {
+                if (err) done(err);
+                expect(res).to.have.status(200);
+                expect(res.body).to.have.length.gt(0);
+                done();
+            })
+        }).catch(err => {
+            done(err)
+        })
     })
     
     it("Should edit a post", function(done) {
+        let tags = ['intro','welcome','new','test','edited']
         Post.findOne().then(foundPost => {
             agent.put("/posts/edit")
             .type('form')
@@ -112,7 +147,7 @@ describe("Handling post logic", function() {
                 'title': 'new title',
                 'md': '# Edited Post!',
                 'resume': 'This post was edited',
-                tags: ['intro','welcome','new','test','edited']
+                tags: tags
             }).end((err, res) => {
                 if (err) throw err
                 expect(res).to.have.status(200);
@@ -120,8 +155,11 @@ describe("Handling post logic", function() {
                     expect(foundPost.get('title')).to.have.string('new title')
                     expect(foundPost.get('md')).to.have.string('# Edited Post!')
                     expect(foundPost.get('resume')).to.have.string('This post was edited')
-                    expect(foundPost.get('tags')).to.be.an('array').that.includes('edited')
-                    done();
+                    expect(foundPost.get('tags')).to.be.an('array')
+                    Tags.findById(foundPost.get('tags')[0]).then(foundTag => {
+                        expect(foundTag.get('name')).to.be.oneOf(tags);
+                        done();
+                    });
                 }).catch(err => {
                     throw err;
                 })

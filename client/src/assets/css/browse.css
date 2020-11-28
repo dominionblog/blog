@@ -1,0 +1,60 @@
+.post-card {
+  display: inline-block;
+  margin: 10px;
+  flex-grow: 1;
+}
+
+.show-posts {
+  overflow-x: scroll;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.post-card h2 {
+  font-size: 30px;
+}
+
+.tag-block {
+  font-size: 20px;
+  margin: 0;
+}
+
+.post-card .date-author {
+  font-size: 20px;
+  margin: 0;
+}
+
+.post-card .btn-link {
+  padding: 0;
+}
+
+.card-carousel-title {
+  background-color: #0085a1;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  font-size: 30px;
+}
+
+.all-subjects {
+  margin: 10px 0;
+  display: flex;
+}
+
+.all-subjects .badge {
+  margin: 5px;
+}
+
+.see-all-btn {
+  margin-left: 10px;
+}
+
+.badge-primary {
+  background-color: #0085a1 !important;
+}
+
+.btn-link {
+  color: #0085a1 !important;
+}
+

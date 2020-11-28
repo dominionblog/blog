@@ -17,13 +17,10 @@ let agent = chai.request.agent(app);
  */
 describe("Makes sure that the user cannot access data without proper authentication", () => {
     before("Empty the database", done => {
-        mongoose.connection.db.dropCollection('posts').then(() => done()).catch(err => {
-            if (err.code == 26) {
-                // Collection does not exist
-                return done();
-            }
-            throw err
-        });        
+        /**
+         * Removed, as making new posts from here is very annoying!
+         */
+        done()
     })
     it("Tries to make a new post", done => {
         agent.post("/posts/new")
@@ -42,30 +39,18 @@ describe("Makes sure that the user cannot access data without proper authenticat
             })
         })
     });
-    it("Tries to edit a post", done => {
-        Users.findOne().then(foundUser => {
-            Post.create({
-                'title': 'test-post',
-                'md': '# First post \n Welcome to my first post on this blog!',
-                'resume': 'A summary of the first blog post',
-                'author': foundUser.get('id'),
-                'tags': ['intro','welcome','new','test']
-            }).then(createdPost => {
-                agent.put("/posts/edit")
-                .type('form')
-                .send({
-                    '_id': createdPost.get('id'),
-                    'title': 'edited'
-                })
-                .end((err, res) => {
-                    expect(res).to.have.status(401);
-                    Post.findById(createdPost.get('id')).then(foundPost => {
-                        expect(foundPost.title).to.not.have.string("edited");
-                        done();
-                    })
-                })
-            }).catch(err => {throw err});
-        }).catch(err => {throw err});
+    it("Tries to edit a post", async () => {
+        let post = await Post.findOne(); // Find a post
+        agent.put("/posts/edit")
+        .type('form')
+        .send({
+            '_id': post.get('id'),
+            'title': 'edited'
+        })
+        .end((err, res) => {
+            expect(res).to.have.status(401);
+            expect(Post.findById(post.get('id'))).to.eventually.not.have.string("edited");
+        })
     })
     it("tried to make a new user", done => {
         expect(agent.post("/users/new").type('form').send({

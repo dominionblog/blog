@@ -78,6 +78,10 @@ function EditPost(props) {
                 _id: id
             }
         }).then(res => {
+            let tagNames = res.data.tags.map(tag => {
+                return tag.name
+            });
+            res.data.tags = tagNames;
             setPost(res.data);
             props.setLoadingOverlay(false);
             setLoading(false);

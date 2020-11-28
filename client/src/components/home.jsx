@@ -1,61 +1,30 @@
-import React, {useEffect, useState} from 'react'
-import PostCard from './post-card'
+import React from 'react'
+import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
-/* Stylesheets */
-
-import '../assets/css/cp.css'
-import '../assets/bootstrap/css/bootstrap.min.css'
-import '../assets/css/main.css'
-import '../assets/css/new-post.css'
-import '../assets/css/post.css'
-import '../assets/css/user-accounts.css'
 import welcomeImage from '../assets/img/welcome-image.JPG'
-import '../assets/fonts/font-awesome.min.css'
-import axios from 'axios';
-import {Spinner} from 'react-bootstrap'
-import moment from 'moment'
+import dominionLogo from "../assets/img/dominion-logo.png"
 
-function Home(props) {
-    let [isLoading, setLoading] = useState(true);
-    let [posts, setPosts] = useState([{}]);
-    useEffect(() => {
-      axios({
-        url: "/posts/view",
-        method: "get"
-      }).then(res => {
-        setLoading(false);
-        // Sort the posts
-        res.data.sort((a, b) => {
-          let dateA = moment(a.createdAt).unix();
-          let dateB = moment(b.createdAt).unix();
-          return dateB-dateA;
-        })
-        setPosts(res.data);
-      }).catch(err => {
-        props.setIsConnected(false)
-        throw err;
-      });
-    },[])
-    return (<>
-    <div>
-            <header className="masthead" style={{ backgroundImage: "url(" + welcomeImage + ")"}}>
+export default () => {
+  return (<div className="welcome-page masthead" style={{ backgroundImage: `url("${welcomeImage}")` }}>
     <div className="overlay" />
     <div className="container">
       <div className="row">
         <div className="col-md-10 col-lg-8 mx-auto">
           <div className="site-heading">
-            <h1>B. Log</h1><span className="subheading">The Best Blog</span></div>
+            <div className="welcome-message">
+              <span className="subheading">Welcome to the</span>
+              <h1>Dominion</h1>
+            </div>
+              <img className="logo-image" src={dominionLogo} />
+            <div className="home-buttons">
+              <Button variant="light" className="home-button" as={Link} to="/browse">Browse Posts</Button>
+              <Link to="/browse" as={Button}></Link>
+              {/* <a className="btn btn-light home-button" role="button">Sign Up</a> */}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </header>
-        {isLoading ? <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner> : posts.map(post => {
-          return (<PostCard key={post._id} {...post}></PostCard>)
-        })}
-    </div>
-        </>)
+  </div>)
 }
-
-export default Home

@@ -22,13 +22,14 @@ function Navigation(props) {
     }
     return (<Navbar className="justify-content-between" bg="light" variant="light" expand="lg">
         <Navbar.Brand as={Link} to="/">
-            B. Log
+            Dominion
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Container>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
+                    <Nav.Link as={Link} className="nav-link" to="/browse">Browse Posts</Nav.Link>
                     <Nav.Link as={Link} className="nav-link" to="/users/view">Our Authors</Nav.Link>
                     {isLoggedIn ? <Nav.Link as={Link} to="/cp">Control Panel</Nav.Link> : null}
                 </Nav>
