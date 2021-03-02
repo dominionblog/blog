@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "empty-folder": "^2.0.4",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.17",
     "move-cli": "^1.2.1",
     "mv": "^2.1.1"
   }

@@ -65,6 +65,12 @@
             ],
             "program": "${workspaceFolder}/server/index.js",
             "cwd": "${workspaceFolder}/server"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Update DB to Newest Specifications",
+            "program": "${workspaceFolder}/update-db.js"
         }
     ],
     "compounds": [
